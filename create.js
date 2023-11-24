@@ -1,10 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test2.db');
+const db = new sqlite3.Database('PlayerInfo.db');
 
 let schema = `
-create table maker(
-  id integer primary key,
-  name text not null
+create table team(
+  id integer primary key autoincrement,
+  name text not null,
+  twitter text
 );
 `
 

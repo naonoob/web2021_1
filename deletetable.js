@@ -1,8 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('test2.db');
+const db = new sqlite3.Database('PlayerInfo.db');
 
 let sql = `
-drop table test;
+drop table team;
 `
 
 db.serialize( () => {
