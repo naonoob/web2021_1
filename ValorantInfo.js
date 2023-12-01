@@ -10,6 +10,10 @@ app.use("/public", express.static(__dirname + "/public"));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.render('toppage');
+});
+
 app.get("/team", (req, res) => {
     db.serialize( () => {
         db.all("select name,id from team;", (error, row) => {
@@ -49,7 +53,7 @@ app.get("/player/:id",(req,res)=>{
   console.log(req.params.id);
   db.serialize(()=>{
     //その選手の詳細表示用ページ
-    db.all("select name,twitter,link,team,post from player where id=" +req.params.id +";", (error,row)=>{
+    db.all("select player.twitter as playertwitter,link,team.id as teamid,player.name as playername,team.name as teamname,post.name as postname from player inner join team on player.team = team.id inner join post on player.post = post.id where player.id=" +req.params.id +";", (error,row)=>{
       if(error){
         res.render('show',{mes:"エラーです"});
       }
