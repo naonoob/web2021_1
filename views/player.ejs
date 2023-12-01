@@ -1,0 +1,18 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Show message</title>
+</head>
+<body>
+<h2><%= data[0].name %>の詳細</h2>
+<table>
+<% for( let row of data ) { %>
+<tr><td>Name</td><td><%= row.name %></td></tr>
+<tr><td>SNS</td><td><a href="<%= row.twitter %>"><%= row.twitter %></a></td></tr>
+<tr><td>配信サイト</td><td><a href="<%= row.link %>"><%= row.link %></a></td></tr>
+<tr><td>所属チーム</td><td><%= row.team %>所属<%= row.post %></td></tr>
+<% } %>
+</table>
+</body>
+</html>

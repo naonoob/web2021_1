@@ -8,7 +8,7 @@
 <h2>チーム一覧</h2>
 <table>
 <% for( let row of data ) { %>
-<tr><td><a href="/db/<%= row.id %>"><%= row.name %></td></tr>
+<tr><td><a href="/team/<%= row.id %>"><%= row.name %></a></td></tr>
 <% } %>
 </table>
 </body>

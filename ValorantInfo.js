@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/team", (req, res) => {
     db.serialize( () => {
-        db.all("select name from team;", (error, row) => {
+        db.all("select name,id from team;", (error, row) => {
             if( error ) {
                 res.render('show', {mes:"エラーです"});
             }
@@ -25,7 +25,7 @@ app.get("/team/:id",(req,res)=>{
   console.log(req.params.id);
   db.serialize(()=>{
     //そのチームに所属している選手、コーチ一覧をDBからソートするSQL文
-    db.all("select  from example where id=" +req.params.id +";", (error,row)=>{
+    db.all("select player.id as playerid,team.name as teamname,player.name as playername from player inner join team on player.team = team.id where team.id = " +req.params.id +";", (error,row)=>{
       if(error){
         res.render('show',{mes:"エラーです"});
       }
@@ -36,7 +36,7 @@ app.get("/team/:id",(req,res)=>{
 
 app.get("/player", (req, res) => {
     db.serialize( () => {
-        db.all("select name from player;", (error, row) => {
+        db.all("select id,name from player;", (error, row) => {
             if( error ) {
                 res.render('show', {mes:"エラーです"});
             }
@@ -45,6 +45,18 @@ app.get("/player", (req, res) => {
     })
 })
 
+app.get("/player/:id",(req,res)=>{
+  console.log(req.params.id);
+  db.serialize(()=>{
+    //その選手の詳細表示用ページ
+    db.all("select name,twitter,link,team,post from player where id=" +req.params.id +";", (error,row)=>{
+      if(error){
+        res.render('show',{mes:"エラーです"});
+      }
+      res.render('player',{data:row});
+    });
+  })
+})
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりません');
 });
