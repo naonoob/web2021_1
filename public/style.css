@@ -7,7 +7,7 @@ h1 {
 h2{
   color: #e5f6ff;/*文字色*/
   text-align: center;
-  font-size: 50px;
+  font-size: 75px;
 }
 body {
   margin: 0;
@@ -18,10 +18,13 @@ body {
   background-size:cover;
 }
 
-a.btn-style-link{
+a.btn-style-link-a{
   display: inline-block;
   font-size: 75px;
-  padding: 10px 10px;
+  padding: 0px 15px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
   text-decoration: none;
   border: 1px;
   background: #ffffff;;
@@ -30,6 +33,25 @@ a.btn-style-link{
   transition: box-shadow .3s;
 }
 
-a.btn-style-link:hover{
-  box-shadow: 0px 4px 8px #ff0000;
+a.btn-style-link-b{
+  display: inline-block;
+  font-size: 75px;
+  padding: 0px 15px;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  text-decoration: none;
+  border: 1px;
+  background: #ffffff;;
+  color: #ff0000;
+  box-shadow: 0px 2px 4px #ff0000;
+  transition: box-shadow .3s;
+}
+
+a.btn-style-link-a:hover{
+  box-shadow: 0px 8px 16px #ff0000;
+}
+
+a.btn-style-link-b:hover{
+  box-shadow: 0px 8px 16px #ff0000;
 }
